@@ -1,3 +1,8 @@
+# Model Mimarisi Akış Şeması
+
+Aşağıda `BP_TripleHybrid` modelinin `forward` metodunun görsel bir akışı bulunmaktadır.
+
+```mermaid
 flowchart TD
     A["Başla: Giriş (x)"] --> B{"1. Giriş Formatı Kontrolü (x.shape[1] != 3)?"};
     B -- "True (Giriş: B, L, 3)" --> C["2. Boyutları Değiştir (Permute): x.permute(0, 2, 1)"];
@@ -64,8 +69,8 @@ flowchart TD
     J_op --> J_out["Çıktı: mha_out"]
     
     J_out --> K["8. mha_out.mean(dim=1)"]
-    K --> K_out["Çıktı: mha_mean"]
-    K_out --> L_op["<b>9. mha_fc</b><br>Linear(256 -> 128)<br>GELU<br>Dropout(0.2)"]
+    K --> K_out["Çıktı: mha_mean"] 
+    K_out --> L_op["<b>9. mha_fc</b><br>Linear(256 -> 128)<br>GELU<br>Dropout(0.2)"] 
     L_op --> L_out["Çıktı: lstm_mha_feat"]
 
     subgraph Birleştirme
@@ -74,12 +79,13 @@ flowchart TD
         L_out --> M["10. torch.cat"]; 
     end
     
-    M --> M_out["Çıktı: fused"]
-    M_out --> N["11. fc_fusion(fused)"]
-    N --> N_out["Çıktı: Sonuç (logits)"]
-    N_out --> O["Bitir: Çıkış"]
+    M --> M_out["Çıktı: fused"] 
+    M_out --> N["11. fc_fusion(fused)"] 
+    N --> N_out["Çıktı: Sonuç (logits)"] 
+    N_out --> O["Bitir: Çıkış"]; 
 
     style A fill:#f9f,stroke:#333,stroke-width:2px
     style O fill:#f9f,stroke:#333,stroke-width:2px
     style B fill:#f99
     style Birleştirme fill:#eee,stroke:#999
+```
