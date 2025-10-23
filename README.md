@@ -87,5 +87,5 @@ flowchart TD
     style A fill:#f9f,stroke:#333,stroke-width:2px
     style O fill:#f9f,stroke:#333,stroke-width:2px
     style B fill:#f99
-    style Birleştirme fill:#eee,stroke:#999
+    style Birleştirme fill:transparent,stroke:#999
 ```
